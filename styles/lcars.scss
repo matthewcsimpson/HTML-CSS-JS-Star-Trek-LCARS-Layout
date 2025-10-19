@@ -1,0 +1,281 @@
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+// UI Colours
+$lcars-background: #000;
+$lcars-ui-corners: #be98c9;
+$lcars-ui-headline-item: #9898fc;
+$lcars-ui-sidebar: #9898c9;
+$lcars-ui-selected: #e79868;
+
+// Text Colours
+$text-heading: #e79824;
+$text-numbers: #b56696;
+$text-maintext: $lcars-ui-sidebar;
+
+// Sizes
+$headline-height: 80px;
+$headline-border-radius: 40px;
+$underline-height: 20px;
+$underline-height-plus: 21px;
+$sidebar-item-height: 40px;
+
+$ui-gap: 10px;
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+
+    background: $lcars-background;
+    color: #fff;
+    height: 100vh;
+}
+
+.maincontainer {
+    width: 90%;
+    margin: 100px auto;
+}
+
+.headline {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -1px;
+
+    &__box {
+        background: $lcars-ui-headline-item;
+
+        &:first-child {
+            border-radius: $headline-border-radius 0 0 0;
+            width: 200px;
+            min-width: 200px;
+
+            margin-right: $ui-gap;
+            background: $lcars-ui-corners;
+        }
+
+        &:nth-child(2) {
+            flex: 1 1 0;
+        }
+
+        &:last-child {
+            width: 40px;
+            border-radius: 0 $headline-border-radius $headline-border-radius 0;
+        }
+
+        &--title {
+            background: $lcars-background;
+            margin: 0 $ui-gap;
+        }
+    }
+    &__heading {
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $text-heading;
+        @include tablet {
+            transform: scale(1, 2.5);
+        }
+    }
+}
+
+.underline {
+    width: 100%;
+    height: $underline-height;
+    margin: 0 0 $ui-gap;
+
+    display: flex;
+
+    &__box {
+        &--sidebar {
+            height: $underline-height;
+            width: 140px;
+            background: $lcars-ui-corners;
+        }
+
+        &--round {
+            width: $underline-height;
+            background: $lcars-ui-corners;
+            margin: 0;
+            padding: 0;
+        }
+        &--roundinner {
+            width: $underline-height-plus;
+            aspect-ratio: 1/1;
+            background: $lcars-background;
+            border-radius: 10px 0 0 0;
+        }
+        &--remainder {
+            flex: 1 1 0;
+            background: $lcars-background;
+        }
+    }
+}
+
+.content {
+    width: 100%;
+    display: flex;
+
+    &__sidebar {
+        min-width: 140px;
+        display: flex;
+        flex-direction: column;
+
+        &item {
+            height: $sidebar-item-height;
+            margin: 0 0 $ui-gap 0;
+            padding: 0 $ui-gap 0 0;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            background: $lcars-ui-headline-item;
+
+            &--spacer {
+                background: $lcars-ui-sidebar;
+            }
+            &--bottom {
+                background: $lcars-ui-sidebar;
+                flex-grow: 1;
+            }
+
+            &--active {
+                background: $lcars-ui-selected;
+            }
+        }
+        &text {
+            color: $lcars-background;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-align: right;
+        }
+    }
+
+    &__midbar {
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+
+        &item {
+            height: $sidebar-item-height;
+            margin: 0 0 $ui-gap 0;
+
+            display: flex;
+        }
+        &text {
+            height: $sidebar-item-height;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 $ui-gap 0;
+        }
+        &nums {
+            color: $text-numbers;
+            font-weight: 900;
+            transform: scale(1, 2.5);
+        }
+        &-round {
+            height: $sidebar-item-height;
+            background: $lcars-ui-headline-item;
+            flex-grow: 1;
+            border-radius: 0 20px 20px 0;
+
+            &--active {
+                background: $lcars-ui-selected;
+            }
+        }
+    }
+
+    &__main {
+        flex: 1 1 0;
+        padding: 0 $ui-gap 0;
+        margin: 0 $ui-gap;
+
+        &heading {
+            color: $text-heading;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+
+            &link {
+                color: lighten($text-heading, 20%);
+                text-decoration: none;
+
+                &:hover {
+                    color: darken($text-heading, 10%);
+                }
+            }
+        }
+
+        &text {
+            color: $text-maintext;
+        }
+    }
+}
+
+.overline {
+    // border: 1px solid red;
+    height: $underline-height;
+    display: flex;
+
+    &__box {
+        height: $underline-height;
+
+        &--sidebar {
+            // border: 1px solid orange;
+            width: 140px;
+            background: $lcars-ui-corners;
+        }
+        &--round {
+            background: $lcars-ui-corners;
+            width: $underline-height;
+        }
+        &--roundinner {
+            width: $underline-height-plus;
+            aspect-ratio: 1/1;
+            background: $lcars-background;
+            border-radius: 0 0 0 10px;
+        }
+    }
+}
+
+.bottomline {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -1px;
+
+    &__box {
+        background: $lcars-ui-headline-item;
+
+        &:first-child {
+            border-radius: 0 0 0 $headline-border-radius;
+            width: 200px;
+            min-width: 200px;
+
+            margin-right: $ui-gap;
+            background: $lcars-ui-corners;
+        }
+
+        &:nth-child(2) {
+            flex: 1 1 0;
+        }
+
+        &:last-child {
+            width: 40px;
+            border-radius: 0 $headline-border-radius $headline-border-radius 0;
+            margin-left: $ui-gap;
+        }
+    }
+}
